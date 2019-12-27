@@ -34,7 +34,7 @@ this.positions = Array.from(document.querySelectorAll('.col'));
 
 this.winner = function(){
     let winner = false;
-    const winnerCombination = [
+    const checkingCombination = [
         [0,1,2],
         [3,4,5],
         [6,7,8],
@@ -46,7 +46,7 @@ this.winner = function(){
     ];
     const positions = this.positions;
 
-   winnerCombination.forEach((winnerCombo) => {
+   checkingCombination.forEach((winnerCombo) => {
         const pos0InnerText = positions[winnerCombo[0]].innerText;
         const pos1InnerText = positions[winnerCombo[1]].innerText;
         const pos2InnerText = positions[winnerCombo[2]].innerText;
