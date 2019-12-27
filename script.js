@@ -29,7 +29,7 @@ this.start = function(){
     }
 }
 function Board(){
-this.spotPosition = Array.from(document.querySelectorAll('.col'));
+this.positions = Array.from(document.querySelectorAll('.col'));
 
 
 this.winner = function(){
@@ -44,19 +44,19 @@ this.winner = function(){
         [1,4,7],
         [2,5,8]
     ];
-    const spotPosition = this.spotPosition;
+    const leftPositions = this.leftPositions;
 
    checkingCombination.forEach((winnerCombo) => {
-        const pos0InnerText = spotPosition[winnerCombo[0]].innerText;
-        const pos1InnerText = spotPosition[winnerCombo[1]].innerText;
-        const pos2InnerText = spotPosition[winnerCombo[2]].innerText;
+        const pos0InnerText = leftPositions[winnerCombo[0]].innerText;
+        const pos1InnerText = leftPositions[winnerCombo[1]].innerText;
+        const pos2InnerText = leftPositions[winnerCombo[2]].innerText;
         const isWinningCombo = pos0InnerText !== '' & 
         pos0InnerText === pos1InnerText & pos1InnerText === pos2InnerText;
 
         if(isWinningCombo){
             winner = true;
             winnerCombo.forEach((index) =>{
-            spotPosition[index].className += 'winner';
+                leftPositions[index].className += 'winner';
             })
         }
 
@@ -70,13 +70,13 @@ function HumanPlayer(game){
 
     this.takeTurn = function(){
     
-        game.spotPosition
+        game.leftPositions
         .forEach(el => el.addEventListener('click', handleTurnTaken));
     }
     
     function handleTurnTaken(event){
        event.target.innerText = 'X';
-       game.spotPosition
+       game.leftPositions
        .forEach(el => el.removeEventListener('click', handleTurnTaken));
     }
 }
@@ -84,10 +84,10 @@ function HumanPlayer(game){
 function ComputerPlayer(game){
 
     this.takeTurn = function(){
-        const howManySpotsLeft =
-        game.spotPosition.filter((p) => p.innerText === '');
-        const move = Math.floor(Math.random() * howManySpotsLeft.length); 
-        howManySpotsLeft[move].innerText = 'O';
+        const availablePosition =
+        game.leftPositions.filter((p) => p.innerText === '');
+        const move = Math.floor(Math.random() * availablePosition.length); 
+        availablePosition[move].innerText = 'O';
         
     }
 }
