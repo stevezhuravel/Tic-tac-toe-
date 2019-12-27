@@ -4,7 +4,7 @@ ticTacToeGame.start();
 function TicTacToeGame(){
 const game = new Game();
 const personPlayer = new personPlayer(game);
-const computerPlayer = new ComputerPlayer(game);
+const machinePlayer = new MachinePlayer(game);
 let turn =0;
 
 this.start = function(){
@@ -22,7 +22,7 @@ this.start = function(){
             personPlayer.takeTurn();
 
         } else {
-            computerPlayer.takeTurn();
+            machinePlayer.takeTurn();
         }
 
         turn++;
