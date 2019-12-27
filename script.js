@@ -3,7 +3,7 @@ ticTacToeGame.start();
 
 function TicTacToeGame(){
 const game = new Game();
-const humanPlayer = new HumanPlayer(game);
+const personPlayer = new personPlayer(game);
 const computerPlayer = new ComputerPlayer(game);
 let turn =0;
 
@@ -19,7 +19,7 @@ this.start = function(){
             return;
         }
         if(turn % 2 === 0 ){
-            humanPlayer.takeTurn();
+            personPlayer.takeTurn();
 
         } else {
             computerPlayer.takeTurn();
