@@ -15,7 +15,7 @@ this.start = function(){
 
     }
     function takeTurn(){
-        if(game.chechForWinner()){
+        if(game.winner()){
             return;
         }
         if(turn % 2 === 0 ){
@@ -32,7 +32,7 @@ function Board(){
 this.positions = Array.from(document.querySelectorAll('.col'));
 
 
-this.chechForWinner = function(){
+this.winner = function(){
     let winner = false;
     const winnerCombination = [
         [0,1,2],
