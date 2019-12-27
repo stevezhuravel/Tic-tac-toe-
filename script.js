@@ -84,10 +84,10 @@ function HumanPlayer(game){
 function ComputerPlayer(game){
 
     this.takeTurn = function(){
-        const availablePosition =
+        const howManySpotsLeft =
         game.positions.filter((p) => p.innerText === '');
-        const move = Math.floor(Math.random() * availablePosition.length); 
-        availablePosition[move].innerText = 'O';
+        const move = Math.floor(Math.random() * howManySpotsLeft.length); 
+        howManySpotsLeft[move].innerText = 'O';
         
     }
 }
