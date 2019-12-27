@@ -2,20 +2,20 @@ const ticTacToeGame = new TicTacToeGame();
 ticTacToeGame.start();
 
 function TicTacToeGame(){
-const game = new Game();
-const personPlayer = new personPlayer(game);
-const machinePlayer = new MachinePlayer(game);
+const games = new Games();
+const personPlayer = new personPlayer(games);
+const machinePlayer = new MachinePlayer(games);
 let turn =0;
 
 this.start = function(){
     const config = { childList: true};
     const observer = new MutationObserver(() => takeTurn())
-    game.positions.forEach((el) => observer.observe(el, config));
+    games.positions.forEach((el) => observer.observe(el, config));
     takeTurn();
 
     }
     function takeTurn(){
-        if(game.winner()){
+        if(games.winner()){
             return;
         }
         if(turn % 2 === 0 ){
@@ -66,26 +66,26 @@ this.winner = function(){
 
 }
 
-function HumanPlayer(game){
+function HumanPlayer(games){
 
     this.takeTurn = function(){
     
-        game.leftPositions
+        games.leftPositions
         .forEach(el => el.addEventListener('click', handleTurnTaken));
     }
     
     function handleTurnTaken(event){
        event.target.innerText = 'X';
-       game.leftPositions
+       games.leftPositions
        .forEach(el => el.removeEventListener('click', handleTurnTaken));
     }
 }
 
-function ComputerPlayer(game){
+function ComputerPlayer(games){
 
     this.takeTurn = function(){
         const availablePosition =
-        game.leftPositions.filter((p) => p.innerText === '');
+        games.leftPositions.filter((p) => p.innerText === '');
         const move = Math.floor(Math.random() * availablePosition.length); 
         availablePosition[move].innerText = 'O';
         
