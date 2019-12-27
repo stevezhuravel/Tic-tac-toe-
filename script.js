@@ -29,7 +29,7 @@ this.start = function(){
     }
 }
 function Board(){
-this.positions = Array.from(document.querySelectorAll('.col'));
+this.spotPosition = Array.from(document.querySelectorAll('.col'));
 
 
 this.winner = function(){
@@ -44,19 +44,19 @@ this.winner = function(){
         [1,4,7],
         [2,5,8]
     ];
-    const positions = this.positions;
+    const spotPosition = this.spotPosition;
 
    checkingCombination.forEach((winnerCombo) => {
-        const pos0InnerText = positions[winnerCombo[0]].innerText;
-        const pos1InnerText = positions[winnerCombo[1]].innerText;
-        const pos2InnerText = positions[winnerCombo[2]].innerText;
+        const pos0InnerText = spotPosition[winnerCombo[0]].innerText;
+        const pos1InnerText = spotPosition[winnerCombo[1]].innerText;
+        const pos2InnerText = spotPosition[winnerCombo[2]].innerText;
         const isWinningCombo = pos0InnerText !== '' & 
         pos0InnerText === pos1InnerText & pos1InnerText === pos2InnerText;
 
         if(isWinningCombo){
             winner = true;
             winnerCombo.forEach((index) =>{
-            positions[index].className += 'winner';
+            spotPosition[index].className += 'winner';
             })
         }
 
@@ -70,13 +70,13 @@ function HumanPlayer(game){
 
     this.takeTurn = function(){
     
-        game.positions
+        game.spotPosition
         .forEach(el => el.addEventListener('click', handleTurnTaken));
     }
     
     function handleTurnTaken(event){
        event.target.innerText = 'X';
-       game.positions
+       game.spotPosition
        .forEach(el => el.removeEventListener('click', handleTurnTaken));
     }
 }
@@ -85,7 +85,7 @@ function ComputerPlayer(game){
 
     this.takeTurn = function(){
         const howManySpotsLeft =
-        game.positions.filter((p) => p.innerText === '');
+        game.spotPosition.filter((p) => p.innerText === '');
         const move = Math.floor(Math.random() * howManySpotsLeft.length); 
         howManySpotsLeft[move].innerText = 'O';
         
