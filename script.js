@@ -9,8 +9,8 @@ let turn =0;
 
 this.start = function(){
     const config = { childList: true};
-    const observer = new MutationObserver(() => takeTurn())
-    game.positions.forEach((el) => observer.observe(el, config));
+    const see = new MutationSee(() => takeTurn())
+    game.positions.forEach((el) => see.observe(el, config));
     takeTurn();
 
     }
